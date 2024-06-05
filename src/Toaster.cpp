@@ -43,8 +43,8 @@ public:
 
 int send_toast()
 {
-    const auto aumi = WinToast::configureAUMI(L"benedikt", L"202020", L"", L"20161006");
-    WinToast::instance()->setAppName(L"ZwanzigToaster");
+    const auto aumi = WinToast::configureAUMI(L"benedikt", L"argus", L"", L"100");
+    WinToast::instance()->setAppName(L"Argus");
     WinToast::instance()->setAppUserModelId(aumi);	
 
     if (!WinToast::instance()->initialize()) {
