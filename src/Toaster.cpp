@@ -21,19 +21,15 @@ public:
         switch (state) {
             case UserCanceled:
                 std::wcout << L"The user dismissed this toast" << std::endl;
-                exit(1);
                 break;
             case TimedOut:
                 std::wcout << L"The toast has timed out" << std::endl;
-                exit(2);
                 break;
             case ApplicationHidden:
                 std::wcout << L"The application hid the toast using ToastNotifier.hide()" << std::endl;
-                exit(3);
                 break;
             default:
                 std::wcout << L"Toast not activated" << std::endl;
-                exit(4);
                 break;
         }
     }
@@ -44,23 +40,11 @@ public:
     }
 };
 
-Toaster::Toaster(/* args */)
-{
-    std::wstring appUserModelID = L"";
-    std::wstring text           = L"HIIII";
-    std::wstring imagePath      = L"";
-    std::wstring attribute      = L"default";
-    std::vector<std::wstring> actions;
-    INT64 expiration = 20000;
-    printf("Toaster created!");
-}
 
-int Toaster::activate()
+int send_toast()
 {
-    WinToastTemplate::AudioOption audioOption = WinToastTemplate::AudioOption::Default;
-
-    WinToast::instance()->setAppName(L"ZwanzigToaster");
     const auto aumi = WinToast::configureAUMI(L"benedikt", L"202020", L"", L"20161006");
+    WinToast::instance()->setAppName(L"ZwanzigToaster");
     WinToast::instance()->setAppUserModelId(aumi);	
 
     if (!WinToast::instance()->initialize()) {
@@ -69,14 +53,11 @@ int Toaster::activate()
     }
 
     WinToastTemplate templ(WinToastTemplate::Text02);
-    templ.setTextField(text, WinToastTemplate::FirstLine);
-    templ.setAudioOption(audioOption);
-    templ.setAttributionText(attribute);
+    templ.setTextField(L"Look at a point 20 meters away for 20 seconds to relax your eyes.", WinToastTemplate::FirstLine);
+    templ.setAudioOption(WinToastTemplate::AudioOption::Default);
+    templ.setAttributionText(L"Reminder");
 
-    for (auto const& action : actions) {
-        templ.addAction(action);
-    }
-
+    INT64 expiration = 200;
     if (expiration) {
         templ.setExpiration(expiration);
     }
@@ -87,6 +68,6 @@ int Toaster::activate()
     }
 
     // Give the handler a chance for 15 seconds (or the expiration plus 1 second)
-    Sleep(expiration ? (DWORD) expiration + 1000 : 15000);
-    exit(2);
+    // Sleep(expiration ? (DWORD) expiration + 1000 : 15000);
+    return 0;
 }
