@@ -38,3 +38,10 @@
 /build
 /cmake-build-debug
 /cmake-build-release
+ALL_BUILD*
+/CMakeFiles
+/lib/WinToast/CMakeFiles
+*.cmake
+*.sln
+CMakeCache.txt
+*.vcxproj*
