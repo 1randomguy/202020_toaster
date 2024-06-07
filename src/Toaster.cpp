@@ -25,12 +25,10 @@ class CustomHandler : public IWinToastHandler {
 public:
     void toastActivated() const {
         std::wcout << L"The user clicked in this toast" << std::endl;
-        exit(0);
     }
 
     void toastActivated(int actionIndex) const {
         std::wcout << L"The user clicked on action #" << actionIndex << std::endl;
-        exit(16 + actionIndex);
     }
 
     void toastDismissed(WinToastDismissalReason state) const {
@@ -73,7 +71,9 @@ int send_toast()
     templ.setAudioOption(WinToastTemplate::AudioOption::Default);
     templ.setAttributionText(L"Reminder");
 
-    INT64 expiration = 200;
+    templ.addAction(L"Dismiss");
+
+    INT64 expiration = 2000;
     if (expiration) {
         templ.setExpiration(expiration);
     }

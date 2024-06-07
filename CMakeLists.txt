@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
-project(Argus VERSION 1.0.0 LANGUAGES CXX)
+project(Argus VERSION 0.0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -15,6 +15,3 @@ target_include_directories(${PROJECT_NAME} PRIVATE
             ${CMAKE_CURRENT_LIST_DIR}/lib/WinToast/include
 )
 target_link_libraries(${PROJECT_NAME} PUBLIC WinToast)
-
-
- # -I$(PROJECT_BASE)/include

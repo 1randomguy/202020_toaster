@@ -23,6 +23,11 @@
 
 using namespace WinToastLib;
 
+void clearScreen() {
+    // ANSI escape code to clear the screen
+    std::cout << "\033[2J\033[1;1H";
+}
+
 int main() {
     if (!WinToast::isCompatible()) 
     {
@@ -42,8 +47,9 @@ int main() {
             int response = send_toast();
             continue;
         }
+        clearScreen();
         std::cout << "Time left: " << int(seconds_until_toast / 60) << "min, " << seconds_until_toast - (int(seconds_until_toast / 60) * 60) << "sec";
-        std::cout << " ....Currently sleeping for " << sleep_ms << std::endl;
+        // std::cout << " ....Currently sleeping for " << sleep_ms << std::endl;
         Sleep(sleep_ms);
         seconds_until_toast --;
         
